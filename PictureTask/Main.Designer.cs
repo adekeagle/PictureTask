@@ -34,12 +34,13 @@ namespace PictureTask
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.lvInfo = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(408, 29);
+            this.btnAdd.Location = new System.Drawing.Point(426, 29);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(96, 23);
             this.btnAdd.TabIndex = 0;
@@ -57,7 +58,7 @@ namespace PictureTask
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(408, 67);
+            this.btnDelete.Location = new System.Drawing.Point(426, 67);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(96, 23);
             this.btnDelete.TabIndex = 2;
@@ -68,7 +69,7 @@ namespace PictureTask
             // btnClose
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(408, 235);
+            this.btnClose.Location = new System.Drawing.Point(426, 235);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(96, 23);
             this.btnClose.TabIndex = 3;
@@ -76,12 +77,25 @@ namespace PictureTask
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // lvInfo
+            // 
+            this.lvInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvInfo.Enabled = false;
+            this.lvInfo.HideSelection = false;
+            this.lvInfo.Location = new System.Drawing.Point(408, 107);
+            this.lvInfo.Name = "lvInfo";
+            this.lvInfo.Size = new System.Drawing.Size(136, 112);
+            this.lvInfo.TabIndex = 4;
+            this.lvInfo.UseCompatibleStateImageBehavior = false;
+            this.lvInfo.View = System.Windows.Forms.View.Details;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 286);
+            this.ClientSize = new System.Drawing.Size(556, 284);
             this.ControlBox = false;
+            this.Controls.Add(this.lvInfo);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.pbPicture);
@@ -92,7 +106,8 @@ namespace PictureTask
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Show pictures";
+            this.ShowIcon = false;
+            this.Text = "Show jpg picture";
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.ResumeLayout(false);
 
@@ -104,6 +119,7 @@ namespace PictureTask
         private System.Windows.Forms.PictureBox pbPicture;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ListView lvInfo;
     }
 }
 

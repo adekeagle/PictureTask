@@ -9,21 +9,25 @@ namespace PictureTask
     {
         private OpenFileDialog fileDialog;
         private Image picture;
-        private const string FILENAME = "last_picture.txt";
+        private const string FILENAME = @"last_picture.txt";
+
         public MainForm()
         {
             InitializeComponent();
 
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + FILENAME) && !string.IsNullOrEmpty(readFilePath()))
+            if (File.Exists(FILENAME) && !string.IsNullOrEmpty(readFilePath()))
             {
                 picture = Image.FromFile(readFilePath());
                 pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
                 pbPicture.Image = picture;
+
+                showListView();
             }
 
             if (!isPicture())
             {
                 btnDelete.Enabled = false;
+                lvInfo.Visible = false;
             }
         }
 
@@ -44,17 +48,19 @@ namespace PictureTask
                 pbPicture.Image = picture;
                 saveFilePath(fileDialog.FileName);
                 btnDelete.Enabled = true;
+
+                showListView();
             }
         }
 
         private static void saveFilePath(string path)
         {
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + FILENAME, path);
+            File.WriteAllText(FILENAME, path);
         }
 
         private static string readFilePath()
         {
-            return File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + FILENAME);
+            return File.ReadAllText(FILENAME);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -63,6 +69,8 @@ namespace PictureTask
             pbPicture.Image = null;
             saveFilePath("");
             btnDelete.Enabled = false;
+            lvInfo.Items.RemoveAt(0);
+            lvInfo.Visible = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -80,6 +88,24 @@ namespace PictureTask
             {
                 return true;
             }
+        }
+
+        private void showListView()
+        {
+            lvInfo.Visible = true;
+            lvInfo.Columns.Add("Name", 60, HorizontalAlignment.Center);
+            lvInfo.Columns.Add("Values", 80, HorizontalAlignment.Center);
+
+            ListViewItem eachRow = new ListViewItem("Name");
+            ListViewItem.ListViewSubItem name = new ListViewItem.ListViewSubItem(eachRow, Path.GetFileName(readFilePath()));
+
+            if (lvInfo.Items.Count != 0)
+            {
+                lvInfo.Items.RemoveAt(0);
+            }
+            eachRow.SubItems.Add(name);
+
+            lvInfo.Items.Add(eachRow);
         }
     }
 }
